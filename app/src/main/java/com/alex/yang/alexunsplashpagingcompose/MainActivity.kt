@@ -5,6 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.alex.yang.alexunsplashpagingcompose.navigation.SetupNavGraph
 import com.alex.yang.alexunsplashpagingcompose.ui.theme.AlexUnsplashPagingComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -14,7 +16,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AlexUnsplashPagingComposeTheme {
-
+                val navHostController = rememberNavController()
+                SetupNavGraph(navHostController = navHostController)
             }
         }
     }

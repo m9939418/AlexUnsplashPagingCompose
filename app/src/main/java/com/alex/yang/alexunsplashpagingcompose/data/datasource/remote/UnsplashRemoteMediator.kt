@@ -1,14 +1,15 @@
-package com.alex.yang.alexunsplashpagingcompose.data.paging
+package com.alex.yang.alexunsplashpagingcompose.data.datasource.remote
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import com.alex.yang.alexunsplashpagingcompose.data.api.UnsplashApi
 import com.alex.yang.alexunsplashpagingcompose.data.datasource.local.ResultDatabase
 import com.alex.yang.alexunsplashpagingcompose.data.datasource.local.ResultEntity
 import com.alex.yang.alexunsplashpagingcompose.data.datasource.local.ResultRemoteKeysEntity
-import com.alex.yang.alexunsplashpagingcompose.data.datasource.remote.UnsplashApi
 import com.alex.yang.alexunsplashpagingcompose.data.mapper.toResultEntity
 import com.alex.yang.alexunsplashpagingcompose.util.Constants.ITEMS_PER_PAGE
 import javax.inject.Inject
@@ -56,9 +57,7 @@ class UnsplashRemoteMediator @Inject constructor(
                 }
             }
 
-            val response = unsplashApi
-                .getAllImages(page = currentPage, perPage = ITEMS_PER_PAGE)
-                .map { it.toResultEntity() }
+            val response = unsplashApi.getAllImages(page = currentPage, perPage = ITEMS_PER_PAGE)
             val endOfPaginationReached = response.isEmpty()
 
             val prevPage = if (currentPage == 1) null else currentPage - 1
@@ -69,18 +68,19 @@ class UnsplashRemoteMediator @Inject constructor(
                     resultDao.deleteAllImages()
                     resultRemoteKeysDao.deleteAllRemoteKeys()
                 }
-                val keys = response.map {
+                val keys = response.map { dto ->
                     ResultRemoteKeysEntity(
-                        id = it.id,
+                        id = dto.id,
                         prevPage = prevPage,
                         nextPage = nextPage
                     )
                 }
                 resultRemoteKeysDao.addAllRemoteKeys(remoteKeys = keys)
-                resultDao.addImages(images = response)
+                resultDao.addImages(images = response.map { it.toResultEntity() })
             }
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (e: Exception) {
+            Log.e("TAG", "載入數據時發生錯誤", e)
             return MediatorResult.Error(e)
         }
     }

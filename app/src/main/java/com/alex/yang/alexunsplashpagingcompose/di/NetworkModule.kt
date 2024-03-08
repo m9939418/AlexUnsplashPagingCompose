@@ -1,6 +1,6 @@
 package com.alex.yang.alexunsplashpagingcompose.di
 
-import com.alex.yang.alexunsplashpagingcompose.data.datasource.remote.UnsplashApi
+import com.alex.yang.alexunsplashpagingcompose.data.api.UnsplashApi
 import com.alex.yang.alexunsplashpagingcompose.util.Constants.BASE_URL
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -11,6 +11,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -31,6 +32,11 @@ object NetworkModule {
         return OkHttpClient.Builder()
             .readTimeout(timeout = 15, TimeUnit.SECONDS)
             .connectTimeout(timeout = 15, TimeUnit.SECONDS)
+            .addInterceptor(
+                HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BODY
+                }
+            )
             .build()
     }
 
@@ -53,4 +59,5 @@ object NetworkModule {
     fun providesUnsplashApi(retrofit: Retrofit): UnsplashApi {
         return retrofit.create(UnsplashApi::class.java)
     }
+
 }

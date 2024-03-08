@@ -4,11 +4,12 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.room.paging.util.INITIAL_ITEM_COUNT
+import com.alex.yang.alexunsplashpagingcompose.data.api.UnsplashApi
 import com.alex.yang.alexunsplashpagingcompose.data.datasource.local.ResultDatabase
 import com.alex.yang.alexunsplashpagingcompose.data.datasource.local.ResultEntity
-import com.alex.yang.alexunsplashpagingcompose.data.datasource.remote.UnsplashApi
-import com.alex.yang.alexunsplashpagingcompose.data.paging.UnsplashRemoteMediator
+import com.alex.yang.alexunsplashpagingcompose.data.datasource.remote.UnsplashRemoteMediator
+import com.alex.yang.alexunsplashpagingcompose.domain.repository.IUnsplashRepository
+import com.alex.yang.alexunsplashpagingcompose.util.Constants.ITEMS_PER_PAGE
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -18,15 +19,15 @@ import javax.inject.Inject
  *
  */
 @OptIn(ExperimentalPagingApi::class)
-class UnsplashRepository @Inject constructor(
+class UnsplashRepositoryImpl @Inject constructor(
     private val unsplashApi: UnsplashApi,
     private val resultDatabase: ResultDatabase,
-) {
+) : IUnsplashRepository {
 
-    fun getAllImages(): Flow<PagingData<ResultEntity>> {
+    override fun getAllImages(): Flow<PagingData<ResultEntity>> {
         val pagingSourceFactory = { resultDatabase.resultDao().getAllImages() }
         return Pager(
-            config = PagingConfig(pageSize = INITIAL_ITEM_COUNT),
+            config = PagingConfig(pageSize = ITEMS_PER_PAGE),
             remoteMediator = UnsplashRemoteMediator(
                 unsplashApi = unsplashApi,
                 resultDatabase = resultDatabase

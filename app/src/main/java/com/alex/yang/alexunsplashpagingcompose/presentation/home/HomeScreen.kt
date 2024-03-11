@@ -1,10 +1,8 @@
 package com.alex.yang.alexunsplashpagingcompose.presentation.home
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -28,7 +26,7 @@ fun HomeScreen(
         topBar = {
             HomeTopBar(
                 onSearchClicked = {
-                    navHostController.navigate(Screen.Home.route)
+                    navHostController.navigate(Screen.Search.route)
                 }
             )
         },

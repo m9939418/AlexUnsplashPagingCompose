@@ -20,7 +20,7 @@ import javax.inject.Inject
  *
  */
 @OptIn(ExperimentalPagingApi::class)
-class UnsplashRemoteMediator @Inject constructor(
+class UnsplashRemoteMediator (
     private val unsplashApi: UnsplashApi,
     private val resultDatabase: ResultDatabase,
 ) : RemoteMediator<Int, ResultEntity>() {

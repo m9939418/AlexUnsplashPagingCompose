@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.alex.yang.alexunsplashpagingcompose.presentation.home.HomeScreen
+import com.alex.yang.alexunsplashpagingcompose.search.presentation.SearchScreen
 
 /**
  * Created by AlexYang on 2024/3/7.
@@ -22,8 +23,8 @@ fun SetupNavGraph(navHostController: NavHostController) {
             HomeScreen(navHostController)
         }
 
-        composable(route = Screen.Detail.route) {
-//            DetailScreen(navHostController)
+        composable(route = Screen.Search.route) {
+            SearchScreen(navHostController)
         }
     }
 }

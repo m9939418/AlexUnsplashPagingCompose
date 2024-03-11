@@ -77,7 +77,7 @@ fun UnsplashItem(unsplashImage: UnsplashImage) {
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(ctx)
             .data(unsplashImage.urls.regular)
-            .crossfade(durationMillis = 1000)
+            .crossfade(durationMillis = 500)
             .placeholder(R.drawable.ic_placeholder)
             .error(R.drawable.ic_placeholder)
             .build()

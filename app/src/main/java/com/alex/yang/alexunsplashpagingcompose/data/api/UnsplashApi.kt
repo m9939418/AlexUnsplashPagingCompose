@@ -2,6 +2,7 @@ package com.alex.yang.alexunsplashpagingcompose.data.api
 
 import com.alex.yang.alexunsplashpagingcompose.BuildConfig
 import com.alex.yang.alexunsplashpagingcompose.data.datasource.remote.ResultDto
+import com.alex.yang.alexunsplashpagingcompose.search.data.remote.SearchResultDto
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
@@ -20,6 +21,6 @@ interface UnsplashApi {
     suspend fun searchImages(
         @Query("query") query: String,
         @Query("per_page") perPage: Int
-    ): List<ResultDto>
+    ): SearchResultDto
 
 }

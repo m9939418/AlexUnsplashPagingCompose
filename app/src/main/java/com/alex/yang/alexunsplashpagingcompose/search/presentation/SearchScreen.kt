@@ -6,7 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.alex.yang.alexunsplashpagingcompose.presentation.component.ListContents
+import com.alex.yang.alexunsplashpagingcompose.home.presentation.component.ListContents
 import com.alex.yang.alexunsplashpagingcompose.search.presentation.component.SearchWidget
 
 /**

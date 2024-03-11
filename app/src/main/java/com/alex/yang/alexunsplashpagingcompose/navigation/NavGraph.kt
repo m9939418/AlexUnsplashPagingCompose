@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.alex.yang.alexunsplashpagingcompose.presentation.home.HomeScreen
+import com.alex.yang.alexunsplashpagingcompose.home.presentation.HomeScreen
 import com.alex.yang.alexunsplashpagingcompose.search.presentation.SearchScreen
 
 /**

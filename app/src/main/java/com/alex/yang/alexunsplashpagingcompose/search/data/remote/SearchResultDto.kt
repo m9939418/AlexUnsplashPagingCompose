@@ -1,6 +1,6 @@
 package com.alex.yang.alexunsplashpagingcompose.search.data.remote
 
-import com.alex.yang.alexunsplashpagingcompose.data.datasource.remote.ResultDto
+import com.alex.yang.alexunsplashpagingcompose.home.data.remote.ResultDto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

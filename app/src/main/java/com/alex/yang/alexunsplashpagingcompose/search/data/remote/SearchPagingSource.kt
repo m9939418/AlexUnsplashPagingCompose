@@ -2,9 +2,9 @@ package com.alex.yang.alexunsplashpagingcompose.search.data.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.alex.yang.alexunsplashpagingcompose.data.api.UnsplashApi
-import com.alex.yang.alexunsplashpagingcompose.data.datasource.local.ResultEntity
-import com.alex.yang.alexunsplashpagingcompose.data.mapper.toResultEntity
+import com.alex.yang.alexunsplashpagingcompose.core.data.api.UnsplashApi
+import com.alex.yang.alexunsplashpagingcompose.home.data.local.ResultEntity
+import com.alex.yang.alexunsplashpagingcompose.home.data.mapper.toResultEntity
 
 /**
  * Created by AlexYang on 2024/3/9.

@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.alex.yang.alexunsplashpagingcompose.data.mapper.toUnsplashImage
-import com.alex.yang.alexunsplashpagingcompose.domain.model.UnsplashImage
+import com.alex.yang.alexunsplashpagingcompose.home.data.mapper.toUnsplashImage
+import com.alex.yang.alexunsplashpagingcompose.home.domain.model.UnsplashImage
 import com.alex.yang.alexunsplashpagingcompose.search.domain.respository.ISearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
